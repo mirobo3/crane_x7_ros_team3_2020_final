@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="CRANE-X7 with card stand">
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <model name="table">
+      <include>
+        <uri>model://table</uri>
+      </include>
+
+      <!-- X7を机の端に配置するため、机を移動、回転する -->
+      <pose>0.29 0 0 0 0 1.5708</pose>
+    </model>
+    
+    <model name="card_stand">
+      <include>
+        <uri>model://card_stand</uri>
+      </include>
+
+      <pose>0.20 -0.125 1.5 0 0 1.5708</pose>
+    </model>
+
+    <model name="card0">
+	<include>
+		<uri>model://card</uri>
+	</include>
+
+	<pose>0.189 0 1.54 0 0 0</pose>
+    </model>
+
+    <model name="card1">
+	    <include>
+		    <uri>model://card</uri>
+	    </include>
+
+	    <pose>0.189 0.07 1.54 0 0 0</pose>
+    </model>
+
+    <model name="card2">
+	    <include>
+		    <uri>model://card</uri>
+	    </include>
+
+	    <pose>0.189 -0.07 1.54 0 0 0</pose>
+    </model>
+
+    <model name="ground_plane">
+      <include>
+        <uri>model://ground_plane</uri>
+      </include>
+
+      <joint name='ground_joint' type='fixed'>
+        <parent>ground_plane::link</parent>
+        <child>table::link</child>
+      </joint>
+    </model>
+  </world>
+</sdf>
