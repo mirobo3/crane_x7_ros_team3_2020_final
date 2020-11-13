@@ -92,13 +92,13 @@ def main():
         target_pose.position.x = x
         target_pose.position.y = y
         target_pose.position.z = z
-        q = quaternion_from_euler(-3.14, 0.0, 3.14)  # 上方から掴みに行く場合
+        q = quaternion_from_euler(-3.14, 0.0, 3.14)  
         target_pose.orientation.x = q[0]
         target_pose.orientation.y = q[1]
         target_pose.orientation.z = q[2]
         target_pose.orientation.w = q[3]
-        arm.set_pose_target(target_pose)  # 目標ポーズ設定
-        arm.go()  # 実行
+        arm.set_pose_target(target_pose)  
+        arm.go()  
 
     #掴むカードを迷う動作
     move(cardx, card0, APPROACH_Z)   
