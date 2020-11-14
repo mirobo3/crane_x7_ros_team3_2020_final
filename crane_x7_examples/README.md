@@ -96,6 +96,13 @@ rosrun crane_x7_example test.py
 rosrun crane_x7_example test2.py
 ~~~
 
+実機でのトランプとトランプ台の設置
+
+![説明０](https://user-images.githubusercontent.com/72371743/99152331-7b6be680-26e4-11eb-9a35-9e7bdbdc9d39.png)
+![説明](https://user-images.githubusercontent.com/72371743/99152367-b40bc000-26e4-11eb-8790-e1d1b471eae1.png)
+
+上の図のように配置してください
+
 ## ファイル一覧
 
 - arm_move
