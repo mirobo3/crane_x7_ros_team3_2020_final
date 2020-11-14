@@ -1,5 +1,104 @@
 [English](README.en.md) | [日本語](README.md)
 
+# trump picking
+
+## インストール方法
+---
+ターミナルで次のようなコマンドを打つ
+~~~ 
+git clone https://github.com/mirobo3/mirobo3_3_2020_crane_x7_ros.git
+~~~
+ホームに戻ってから.gazeboディレクトリに移動し、次のコマンドを実行します
+~~~
+rm -rf models
+git clone https://github.com/mirobo3/models.git 
+~~~
+
+これでセットアップ完了です
+
+## 使い方
+---
+gazebo上で動かす場合
+
+Terminalを開き、次のようなコマンドを実行します
+~~~
+roslaunch crane_x7_gazebo crane_x7_card_stand.launch
+~~~
+gazeboが起動したら、別のターミナルを開き、下記のコマンドを実行
+~~~
+rosrun crane_x7_example test.py
+~~~
+
+実機で動かす場合
+
+下記リンク先の手順にしたがって実機と接続します
+
+[実機との接続の仕方](#実機を使う場合)
+
+接続したら、次のコマンドを実行します
+~~~
+rosrun crane_x7_example test2.py
+~~~
+
+## ファイル一覧
+
+- arm_move
+- arm_move2
+- arm_move_card0
+- arm_move_card1
+- hand_grip
+- joint_rotation
+- pick1
+- pose_groupstae_example
+- [test](#test.py)
+- [test2](#test2.py)
+
+--- 
+## arm_move.py
+
+アームがただ移動するプログラムです
+
+[ファイル一覧に戻る](#ファイル一覧)
+
+---
+## arm_move2.py
+  card2を掴みに行くプログラム
+
+### arm_move_card0
+
+card0を掴みに行くプログラム
+
+### arm_move_card1
+
+card1を掴みに行くプログラム
+
+[ファイル一覧に戻る](#ファイル一覧)
+
+---
+
+## test.py
+
+gazeboで動かす場合に使うコードです
+
+3枚のトランプからプログラム内で決められたトランプをつかみ、持ち上げ、回し、落とします
+
+下記のコマンドでコードを実行します
+~~~
+rosrun crane_x7_example test.py
+~~~
+
+### test2.py
+
+実機で動かす場合に使うtest.pyの改良コードです
+
+下記のコマンドで実行できます
+~~~
+rosrun crane_x7_example test2.py
+~~~
+
+[ファイル一覧に戻る](#ファイル一覧)
+
+---
 # crane_x7_examples
 
 CRANE-X7のためのパッケージ、 `crane_x7` で用いるサンプルをまとめたパッケージです。
