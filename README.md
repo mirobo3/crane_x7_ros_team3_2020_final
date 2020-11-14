@@ -8,7 +8,12 @@
 [https://github.com/mirobo3/Presentation/blob/main/README.md](https://github.com/mirobo3/Presentation/blob/main/README.md)
 
 3班のプログラムの説明や使い方はこちらです。  
-[crane_x7_examples/README.md](./crane_x7_examples/README.md)
+[crane_x7_examples/README.md](./crane_x7_examples/README.md)  
+
+3班のモデルに関しての説明はこちらです。  
+[https://github.com/mirobo3/models/blob/master/README.md](https://github.com/mirobo3/models/blob/master/README.md)  
+
+***
 
 CRANE-X7のROSパッケージです。
 
