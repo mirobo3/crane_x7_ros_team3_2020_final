@@ -78,7 +78,7 @@ roslaunch crane_x7_gazebo crane_x7_card_stand.launch
 
 実行すると次のような状態になっていれば成功です
 
-![zenntaizou](https://user-images.githubusercontent.com/72371137/99149538-068fb100-26d2-11eb-9436-a072ac943169.jpg)
+![スクリーンショット 2020-11-15 011604](https://user-images.githubusercontent.com/72371743/99151777-be2bbf80-26e0-11eb-9635-d5e99a318b96.png)
 
 gazeboが起動したら、別のターミナルを開き、下記のコマンドを実行
 ~~~
