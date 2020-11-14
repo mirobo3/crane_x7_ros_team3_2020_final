@@ -64,6 +64,9 @@ git clone https://github.com/mirobo3/models.git
 
 これでセットアップ完了です
 
+モデルに関しての説明はこちらです。  
+[https://github.com/mirobo3/models/blob/master/README.md](https://github.com/mirobo3/models/blob/master/README.md)
+
 ## 使い方
 ---
 gazebo上で動かす場合
