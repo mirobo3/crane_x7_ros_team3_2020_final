@@ -4,6 +4,9 @@
 
 ![gazebo_card_stand_model (2)](https://user-images.githubusercontent.com/72371743/99150696-abfa5300-26d9-11eb-8d3a-6bf527ea5185.png)
 
+3班の中間のコンセプトなどはこちらです。  
+[https://github.com/mirobo3/Presentation/blob/main/README.md](https://github.com/mirobo3/Presentation/blob/main/README.md)
+
 3班のプログラムの説明や使い方はこちらです。  
 [crane_x7_examples/README.md](./crane_x7_examples/README.md)
 
