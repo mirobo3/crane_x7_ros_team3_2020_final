@@ -1,10 +1,11 @@
-[English](README.en.md) | [日本語](README.md)
+ [日本語](README.md)
 
-# crane_x7_ros
+# crane_x7_ros_team3_2020
 
-[![industrial_ci](https://github.com/rt-net/crane_x7_ros/workflows/industrial_ci/badge.svg?branch=master)](https://github.com/rt-net/crane_x7_ros/actions?query=workflow%3Aindustrial_ci+branch%3Amaster)
+![gazebo_card_stand_model (2)](https://user-images.githubusercontent.com/72371743/99150696-abfa5300-26d9-11eb-8d3a-6bf527ea5185.png)
 
-![crane_x7_gazebo](https://rt-net.github.io/images/crane-x7/crane_x7_gazebo.png "crane_x7_gazebo")
+3班のプログラムの説明や使い方はこちらです。
+[./crane_x7_examples/README.md](./crane_x7_examples/README.md)
 
 CRANE-X7のROSパッケージです。
 
@@ -15,7 +16,7 @@ ROS Wikiはこちらです。
 [https://wiki.ros.org/crane_x7](https://wiki.ros.org/crane_x7)
 
 ROSのサンプルコード集はこちらです。  
-[crane_x7_examples](https://github.com/rt-net/crane_x7_ros/tree/master/crane_x7_examples)
+[crane_x7_examples](https://github.com/mirobo3/crane_x7_ros_team3_2020/tree/master/crane_x7_examples)
 
 ## 動作環境
 
@@ -44,7 +45,7 @@ ROSのサンプルコード集はこちらです。
 
   ```bash
   cd ~/catkin_ws/src
-  git clone https://github.com/rt-net/crane_x7_ros.git
+  git clone https://github.com/mirobo3/crane_x7_ros_team3_2020
   ```
 
 - 依存関係にあるパッケージをインストールします。
@@ -64,10 +65,6 @@ ROSのサンプルコード集はこちらです。
   cd ~/catkin_ws && catkin_make
   source ~/catkin_ws/devel/setup.bash
   ```
-
-### `apt`を使用してインストールする方法
-
-後日提供予定です。
 
 ## セットアップ方法
 
@@ -121,7 +118,7 @@ GazeboでCRANE-X7のシミュレーションを行うパッケージです。
 
 次のコマンドで起動します。実機との接続やcrane_x7_bringupの実行は必要ありません。
 
-`roslaunch crane_x7_gazebo crane_x7_with_table.launch`
+`roslaunch crane_x7_gazebo crane_x7_card_stand.launch`
 
 ---
 
