@@ -51,7 +51,7 @@ roslaunch crane_x7_gazebo crane_x7_with_table.launch
 
 ## インストール方法
 ---
-ターミナルで次のようなコマンドを打つ
+ターミナルで次のようなコマンドを実行します
 ~~~ 
 git clone https://github.com/mirobo3/mirobo3_3_2020_crane_x7_ros.git
 ~~~
