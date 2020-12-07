@@ -206,5 +206,6 @@ include_directories(
 
 catkin_install_python(PROGRAMS 
 	publish_image.py
-      	cvbridge_subscribe_test.py	
+      	cvbridge_subscribe_test.py
+	cvbridge_hand.py	
 	DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
