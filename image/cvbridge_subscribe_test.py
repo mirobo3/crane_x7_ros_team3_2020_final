@@ -22,8 +22,7 @@ def process_image(msg):
         frame = bridge.imgmsg_to_cv2(msg, "bgr8")
         #W = video.get(cv2.CAP_PROP_FRAME_WIDTH)
         #H = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
-        frame_rate = 20.0 # フレームレート
-        size1 = (1080, 720) # 動画の画面サイズ                                                                      
+        size1 = (1080, 720) # 画面サイズ                                                                      
 
         count=0
 
