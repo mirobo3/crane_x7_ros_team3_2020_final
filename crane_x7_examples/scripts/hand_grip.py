@@ -51,6 +51,10 @@ def main():
     rospy.init_node("gipper_action_client")
     gc = GripperClient()
 
+    arm.set_named_target("home")
+    arm.go()
+
+
     # Open grippers(45degrees)
     print "Open Gripper."
     gripper = 45.0
