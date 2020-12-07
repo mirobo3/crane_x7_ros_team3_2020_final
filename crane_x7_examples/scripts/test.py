@@ -46,15 +46,13 @@ class GripperClient(object):
 
 def main():
 
-    GRIPPER_OPEN = 1.0
-    GRIPPER_CLOSE = 0.0
-    APPROACH_Z = 0.2
-    LEAVE_Z = 0.20
-    PICK_Z = 0.14
-    card0 = 0.0
-    card2 = -0.07
-    card1 = 0.07
-    cardx = 0.195
+    APPROACH_Z = 0.2 #移動するときの高さ
+    LEAVE_Z = 0.20   #持ち上げる高さ
+    PICK_Z = 0.14    #掴むときのアームの高さ
+    card0 = 0.0      #カード3のy座標
+    card2 = -0.07    #カード2のy座標
+    card1 = 0.07     #カード1のy座標
+    cardx = 0.195    #3つのカードのx座標
 
     rospy.init_node("gripper_action_client")
     robot = moveit_commander.RobotCommander()
@@ -118,11 +116,8 @@ def main():
     move(cardx, card1, APPROACH_Z)
     rospy.sleep(1.0)
 
-    
-
     # 掴みにいく
     move(cardx, card1, PICK_Z)
-
     rospy.sleep(1.0)
 
     gc = GripperClient()
@@ -134,20 +129,14 @@ def main():
     result=gc.wait(2.0)
     time.sleep(1)
     
-
     # 持ち上げる
     move(cardx,card1,LEAVE_Z)
-
-     
-    
 
     # 移動する
     move(cardx,0.3,0.2)
 
-
-
     # SRDFに定義されている"home"の姿勢にする
-    # srdfファイルがある場所 (crane_x7_ros/crane_x7_moveit_config/config/crane_x7.srdf)
+    # srdfファイルがある場所 (mirobo3_3_2020_crane_x7_ros/crane_x7_moveit_config/config/crane_x7.srdf)
     arm.set_named_target("home")
     arm.go()
 
