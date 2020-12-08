@@ -21,8 +21,7 @@ def process_image(msg):
     try:
         bridge = CvBridge()
         frame = bridge.imgmsg_to_cv2(msg, "bgr8")
-        #W = video.get(cv2.CAP_PROP_FRAME_WIDTH)
-        #H = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
+        
         size1 = (1080, 720) # 画面サイズ                                                                      
         #roi = frame[100:400, 100:500]
         #cv2.rectangle(frame, (100,100),(500,400),(0,255,0),0)
@@ -30,11 +29,11 @@ def process_image(msg):
         
         
         kernel = np.ones((3,3), np.uint8)
-        frame=cv2.GaussianBlur(frame,(5,5),0)
+        frame=cv2.GaussianBlur(frame,(5,5),100)
 
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-        lower_skin = np.array([0,20,70], dtype=np.uint8)
+        lower_skin = np.array([4,20,70], dtype=np.uint8)
         upper_skin = np.array([20,255,255], dtype=np.uint8)
         
         mask = cv2.inRange(hsv, lower_skin, upper_skin)
@@ -47,7 +46,7 @@ def process_image(msg):
         cnt = max(contours, key = lambda x: cv2.contourArea(x))
         
 #approx contour
-        epsilon = 0.01*cv2.arcLength(cnt, True)
+        epsilon = 0.001*cv2.arcLength(cnt, True)
         approx = cv2.approxPolyDP(cnt, epsilon, True)
 
     #輪郭の凸包（convex hull）を求める
@@ -56,59 +55,33 @@ def process_image(msg):
 #area define
         areahull = cv2.contourArea(hull)
         areacnt = cv2.contourArea(cnt)
+        print(areacnt)
 
 #arearatio
         arearatio = ((areahull-areacnt)/areacnt)*100
+        #print(arearatio)
 
     #物体検出    
         n, img_label, data, center = cv2.connectedComponentsWithStats(mask)
 
-    #    tr_x = lambda x : x * 150 / 500 # X軸 画像座標→実座標 
-    #    tr_y = lambda y : y * 150 / 500 # Y軸 　〃
         img_trans_marked = frame.copy()
-        for i in range(1,n):
-                x, y, w, h, size = data[i]
-            
-          #  detected_obj.append( dict( x = tr_x(x),
-          #                        y = tr_y(y),
-           #                       w = tr_x(w),
-        #                      h = tr_y(h),
-        #                      cx = tr_x(center[i][0]),
-         #                     cy = tr_y(center[i][1])))  
-      # 確認
-                w_size=w/2
-                w_size=int(w_size)
-                h_size=h/2
-                h_size=int(h_size)
-                z_size=(h_size+w_size)/2
-                z_size=int(z_size)
-               # img_trans_marked = cv2.rectangle(img_trans_marked, (x,y), (x+w,y+h),(0,255,0),2)
-                #img_trans_marked = cv2.circle(img_trans_marked, (int(center[i][0]),int(center[i][1])),5,(0,0,255),-1)
-                #img_trans_marked = cv2.circle(img_trans_marked, (int(center[i][0]),int(center[i][1])),w_size,(0,0,255),5)
-    #        img_trans_marked = cv2.circle(img_trans_marked, (int(center[i][0]),int(center[i][1])),h_size,(0,0,255),5)
-                #img_trans_marked = cv2.circle(img_trans_marked, (int(center[i][0]),int(center[i][1])),z_size,(0,0,255),5)
-    #        img_trans_marked = cv2.circle(img_trans_marked, (int(center[i][0]),int(center[i][1])),600,(0,0,255),5)
-     #       img_trans_marked = cv2.circle(img_trans_marked, (int(center[i][0]),int(center[i][1])),700,(0,0,255),5)
 
     #最大の輪郭と凸包を描画
         img_trans_marked = cv2.drawContours(img_trans_marked, [cnt], -1, (255,0,0), 3)
-    #        img_trans_marked = cv2.drawContours(img_trans_marked, [hull], -1, (0,255,0), 3)
 
     #凹状欠損（convexity defects）の検出
-       # cnt = cv2.approxPolyDP(cnt, 0.01 * cv2.arcLength(cnt, True), True)
-        hull = cv2.convexHull(approx, returnPoints=False)
+        #cnt = cv2.approxPolyDP(cnt, 0.01 * cv2.arcLength(cnt, True), True)
+        hull = cv2.convexHull(cnt, returnPoints=False)
 
     #凹状欠損の点を描画
-        defects = cv2.convexityDefects(approx, hull)
+        defects = cv2.convexityDefects(cnt, hull)
         for i in range(defects.shape[0]):
             s, e, f, d = defects[i, 0]
             start = tuple(cnt[s][0])
             end = tuple(cnt[e][0])
             far = tuple(cnt[f][0])
-    #            dist = cv2.pointPolygonTest(hull2,far,True)
-    #            print(d)
-          #  if d > 45000:
-           #     count+=1
+    
+       #print(d)
 
             a = math.sqrt((end[0]-start[0])**2 + (end[1]-start[1])**2)
             b = math.sqrt((far[0]-start[0])**2 + (far[1]-start[1])**2)
@@ -120,28 +93,24 @@ def process_image(msg):
 
             angle = math.acos((b**2+c**2-a**2)/(2*b*c))*57
 
-            if angle <= 90:
+            if angle <= 90 and d>30:
                 count+=1
 
-            cv2.circle(img_trans_marked, far, 5, [0, 255, 0], -1)
+                cv2.circle(img_trans_marked, far, 5, [0, 255, 0], -1)
 
             cv2.line(img_trans_marked, start, end, [0, 255, 0], 2)
-    #            cv2.line(img_trans_marked, avr, far, [0, 255, 0], 2)
 
-           # u = start-far
-           # numpy.linalg.norm(u)
-
-
-        #    cv2.circle(img_trans_marked, far, 5, [0, 255, 0], -1) 
 
         count+=1
         font = cv2.FONT_HERSHEY_SIMPLEX
-    #    print(count)
+        if count == 0:
+            cv2.putText(img_trans_marked, 'gu', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+            
         if count == 1:
             if areacnt<2000:
                 cv2.putText(img_trans_marked, 'gu', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
-            elif arearatio<12:
-                cv2.putText(img_trans_marked, 'gu', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+           # elif arearatio<12:
+            #    cv2.putText(img_trans_marked, 'gu', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
             else:
                 cv2.putText(img_trans_marked, '1', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
                 
@@ -153,32 +122,20 @@ def process_image(msg):
             cv2.putText(img_trans_marked, '3', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
             
 
-        if count >= 4:
+        if count == 4:
             cv2.putText(img_trans_marked, '4', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
 
-        if count == 5:
+        if count >= 5:
             cv2.putText(img_trans_marked, 'pa', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
 
 
         cv2.imshow('trans',img_trans_marked)
         cv2.imshow('mask', mask)
-      #  if cv2.waitKey(10) & 0xFF == ord('q'):
-     #       break
 
-        #bridge = CvBridge()
-           # msg = bridge.cv2_to_imgmsg(img_trans_marked, encoding = "bgr8")
-
-            #rate=rospy.Rate(1)
-          #  while not rospy.is_shutdown():
-            #pub.publish(msg)
         cv2.waitKey(10)
-        
 
     except:
         pass
-
-
-   # cv2.destroyAllWindows()
 
 if __name__=='__main__':
     try:
