@@ -42,16 +42,8 @@ class testNode():
     #最大の輪郭を見つける
         cnt = max(contours, key = lambda x: cv2.contourArea(x))
 
-#approx contour
-        epsilon = 0.001*cv2.arcLength(cnt, True)
-        approx = cv2.approxPolyDP(cnt, epsilon, True)
-
     #輪郭の凸包（convex hull）を求める
         hull = cv2.convexHull(cnt)
-
-#area define
-        areahull = cv2.contourArea(hull)
-        areacnt = cv2.contourArea(cnt)
 
     #物体検出    
         n, img_label, data, center = cv2.connectedComponentsWithStats(mask)
