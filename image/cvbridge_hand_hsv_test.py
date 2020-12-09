@@ -9,6 +9,8 @@ import os
 from sensor_msgs.msg import Image
 import math
 
+shape = 0
+
 def start_node():
 
     rospy.init_node('opencv')
@@ -24,21 +26,24 @@ def process_image(msg):
         
         size1 = (1080, 720) # 画面サイズ                                                                      
         #roi = frame[100:400, 100:500]
-        #cv2.rectangle(frame, (100,100),(500,400),(0,255,0),0)
+       # cv2.rectangle(frame, (100,100),(550,450),(0,255,0),0)
         count=0
         
         
         kernel = np.ones((3,3), np.uint8)
-        frame=cv2.GaussianBlur(frame,(5,5),100)
+        frame=cv2.GaussianBlur(frame,(5,5),0)
+        frame= cv2.medianBlur(frame,5)
 
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-        lower_skin = np.array([4,20,70], dtype=np.uint8)
-        upper_skin = np.array([20,255,255], dtype=np.uint8)
+        lower_skin = np.array([0,20,70], dtype=np.uint8)
+        upper_skin = np.array([25,255,255], dtype=np.uint8)
         
         mask = cv2.inRange(hsv, lower_skin, upper_skin)
 
         mask = cv2.dilate(mask, kernel,iterations = 4)
+
+#        mask = cv2.GaussianBlur(mask,(5,5),100)
     #輪郭を検出
         contours, hierarchy = cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
 
@@ -93,7 +98,7 @@ def process_image(msg):
 
             angle = math.acos((b**2+c**2-a**2)/(2*b*c))*57
 
-            if angle <= 90 and d>30:
+            if angle < 70 and d>100:
                 count+=1
 
                 cv2.circle(img_trans_marked, far, 5, [0, 255, 0], -1)
@@ -104,31 +109,32 @@ def process_image(msg):
         count+=1
         font = cv2.FONT_HERSHEY_SIMPLEX
         if count == 0:
-            cv2.putText(img_trans_marked, 'gu', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+            cv2.putText(img_trans_marked, 'gu', (0, 100), font, 4, (0, 0, 255), 5, cv2.LINE_AA)
             
         if count == 1:
-            if areacnt<2000:
-                cv2.putText(img_trans_marked, 'gu', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+            if areacnt<58000:
+                cv2.putText(img_trans_marked, 'gu', (0, 100), font, 4, (0, 0, 255), 5, cv2.LINE_AA)
            # elif arearatio<12:
             #    cv2.putText(img_trans_marked, 'gu', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
             else:
-                cv2.putText(img_trans_marked, '1', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+                cv2.putText(img_trans_marked, '1', (0, 100), font, 4, (0, 0, 255), 5, cv2.LINE_AA)
                 
                 
         if count == 2:
-            cv2.putText(img_trans_marked, 'choki', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+            cv2.putText(img_trans_marked, 'choki', (0, 100), font, 4, (0, 0, 255), 5, cv2.LINE_AA)
 
         if count == 3:
-            cv2.putText(img_trans_marked, '3', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+            cv2.putText(img_trans_marked, '3', (0, 100), font, 4, (0, 0, 255), 5, cv2.LINE_AA)
             
 
         if count == 4:
-            cv2.putText(img_trans_marked, '4', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+            cv2.putText(img_trans_marked, '4', (0, 100), font, 4, (0, 0, 255), 5, cv2.LINE_AA)
 
         if count >= 5:
-            cv2.putText(img_trans_marked, 'pa', (0, 100), font, 6, (0, 0, 255), 5, cv2.LINE_AA)
+            cv2.putText(img_trans_marked, 'pa', (0, 100), font, 4, (0, 0, 255), 5, cv2.LINE_AA)
 
 
+        cv2.rectangle(img_trans_marked, (100,100),(550,450),(0,255,0),0)
         cv2.imshow('trans',img_trans_marked)
         cv2.imshow('mask', mask)
 
