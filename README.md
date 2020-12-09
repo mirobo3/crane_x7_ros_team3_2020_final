@@ -2,16 +2,14 @@
 
 # crane_x7_ros_team3_2020_final
 
-![gazebo_card_stand_model (2)](https://user-images.githubusercontent.com/72371743/99150696-abfa5300-26d9-11eb-8d3a-6bf527ea5185.png)
+![hand_recognition002-2020-12-09_20 32 36_Trim_Moment](https://user-images.githubusercontent.com/72371743/101672108-cb965880-3a98-11eb-8fd5-6335bd5309a0.jpg)
 
-3班の中間のコンセプトなどはこちらです。  
-[https://github.com/mirobo3/Presentation/blob/main/README.md](https://github.com/mirobo3/Presentation/blob/main/README.md)
+3班の期末のコンセプトなどはこちらです。  
+[https://github.com/mirobo3/TERM_END_TEAM3/blob/main/README.md](https://github.com/mirobo3/TERM_END_TEAM3/blob/main/README.md)
 
 3班のプログラムの説明や使い方はこちらです。  
 [crane_x7_examples/README.md](./crane_x7_examples/README.md)  
 
-3班のモデルに関しての説明はこちらです。  
-[https://github.com/mirobo3/models/blob/master/README.md](https://github.com/mirobo3/models/blob/master/README.md)  
 
 ***
 
