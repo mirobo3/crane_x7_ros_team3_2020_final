@@ -20,11 +20,11 @@ def process():
 
         if n > 0:
             if n == 1:
-                gu.main()
-            elif n == 2:
                 choki.main()
-            elif n == 5:
+            elif n == 2:
                 par.main()
+            elif n == 5:
+                gu.main()
             else: 
                 print('not find gesture')
             hand_action.main()
