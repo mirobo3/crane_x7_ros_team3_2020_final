@@ -9,7 +9,7 @@ from tf.transformations import quaternion_from_euler
 
 
 def main():
-    rospy.init_node("pose_groupstate_example")
+#    rospy.init_node("pose_groupstate_example")
     robot = moveit_commander.RobotCommander()
     arm = moveit_commander.MoveGroupCommander("arm")
     arm.set_max_velocity_scaling_factor(1.0)
