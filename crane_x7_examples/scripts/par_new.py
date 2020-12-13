@@ -63,36 +63,42 @@ def main():
     print "current_joint_values (radians):"
     print arm.get_current_joint_values()
 
-    gripper = 0.0
-    gc.command(math.radians(gripper),1.0)
-    result = gc.wait(2.0)
-    print result
-    time.sleep(1)
-
-     #悔しがる
+     #手首回転
     target_joint_values = arm.get_current_joint_values()
-    joint_angle = math.radians(90)
+    joint_angle = math.radians(0)
     target_joint_values[6] = joint_angle 
     arm.set_joint_value_target(target_joint_values)
     arm.go()
 
-    for i in range(3):
-      target_joint_values = arm.get_current_joint_values()
-      joint_angle = math.radians(-60)
-      target_joint_values[3] = joint_angle 
-      arm.set_joint_value_target(target_joint_values)
-      arm.go()
-      target_joint_values = arm.get_current_joint_values()
-      joint_angle = math.radians(-160)
-      target_joint_values[3] = joint_angle 
-      arm.set_joint_value_target(target_joint_values)
-      arm.go()
-
-    gripper = 0.0
+     #パーの手
+    print "Change par."
+    gripper = 70
     gc.command(math.radians(gripper),1.0)
+    num = 0
+    while num < 3:
+      joint_angle = math.radians(-90)
+      target_joint_values[6] = joint_angle
+      arm.set_joint_value_target(target_joint_values)
+      arm.go()
+      print str(6) + "-> joint_value_target (degrees):",
+      print math.degrees( arm.get_joint_value_target()[6] ),
+      print ", current_joint_values (degrees):",
+      print math.degrees( arm.get_current_joint_values()[6] )
+
+      joint_angle = math.radians(90)
+      target_joint_values[6] = joint_angle
+      arm.set_joint_value_target(target_joint_values)
+      arm.go()
+      print str(6) + "-> joint_value_target (degrees):",
+      print math.degrees( arm.get_joint_value_target()[6] ),
+      print ", current_joint_values (degrees):",
+      print math.degrees( arm.get_current_joint_values()[6] )
+      num += 1
+
     result = gc.wait(2.0)
     print result
     time.sleep(1)
+
     arm.set_named_target("vertical")
     arm.go()
 
