@@ -95,4 +95,13 @@ gazeboが起動したら、別のターミナルを開き、下記のコマン�
 
 ## ファイル一覧
 --- 
+- choki.py
+- gu.py
+- par.py
+- hand_Action.py
+- main2.py
+- main_node2.py
+- par_new.py
+- pose2.py
+- 
 
