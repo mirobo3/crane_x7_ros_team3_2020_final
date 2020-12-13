@@ -49,7 +49,7 @@ class GripperClient(object):
         self._goal = GripperCommandGoal()
 
 def main():
-    rospy.init_node("gipper_action_client")
+#    rospy.init_node("gipper_action_client")
     gc = GripperClient()
 
     arm = moveit_commander.MoveGroupCommander("arm")
@@ -98,6 +98,9 @@ def main():
     result = gc.wait(2.0)
     print result
     time.sleep(1)
+
+    arm.set_named_target("vertical")
+    arm.go()
 
 if __name__ == "__main__":
     main()
