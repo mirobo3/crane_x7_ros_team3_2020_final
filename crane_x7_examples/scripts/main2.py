@@ -19,7 +19,6 @@ from control_msgs.msg import (
     GripperCommandGoal
 )
 import pose2
-from tf.transformations import quaternion_from_euler
 
 class GripperClient(object):
     def __init__(self):
@@ -54,11 +53,11 @@ class GripperClient(object):
         self._goal = GripperCommandGoal()
 
 def call(message):
-	gc = GripperClient()
+	pose2.main()
 
+	gc = GripperClient()
 	arm = moveit_commander.MoveGroupCommander("arm")
 	arm.set_max_velocity_scaling_factor(0.5)  
-
 	arm.set_named_target("home")
 	arm.go()
 
@@ -79,7 +78,7 @@ def call(message):
 		gc.command(math.radians(gripper),1.0)
 		result = gc.wait(2.0)
 		print (result)
-		#time.sleep(1)
+		time.sleep(1)
 	elif message.data == 2:
 		target_joint_values = arm.get_current_joint_values()
 		joint_angle = math.radians(0)
@@ -92,7 +91,7 @@ def call(message):
 		gc.command(math.radians(gripper),1.0)
 		result = gc.wait(2.0)
 		print (result)
-		#time.sleep(1)
+		time.sleep(1)
 	elif message.data==3:
 		target_joint_values = arm.get_current_joint_values()
      	#手首回転
@@ -106,13 +105,38 @@ def call(message):
 		gc.command(math.radians(gripper),1.0)
 		result = gc.wait(2.0)
 		print (result)
-		#time.sleep(1)
+		time.sleep(1)
 	else:
 		print('Error Not correct number')
 
+	# 悔しがる
+	target_joint_values = arm.get_current_joint_values()
+	joint_angle = math.radians(90)
+	target_joint_values[6] = joint_angle 
+	arm.set_joint_value_target(target_joint_values)
+	arm.go()
+
+	for i in range(3):
+		target_joint_values = arm.get_current_joint_values()
+		joint_angle = math.radians(-60)
+		target_joint_values[3] = joint_angle 
+		arm.set_joint_value_target(target_joint_values)
+		arm.go()
+		target_joint_values = arm.get_current_joint_values()
+		joint_angle = math.radians(-160)
+		target_joint_values[3] = joint_angle 
+		arm.set_joint_value_target(target_joint_values)
+		arm.go()
+
+	gripper = 0.0
+	gc.command(math.radians(gripper),1.0)
+	result = gc.wait(2.0)
+	print result
+	time.sleep(1)
+
 def main():
 	rospy.init_node('main')
-	rospy.Subscriber("hand_gesture", Int32, call)
+	rospy.Subscriber("gesture_gu", Int32, call)
 	rospy.spin()
 
 if __name__ == "__main__":
