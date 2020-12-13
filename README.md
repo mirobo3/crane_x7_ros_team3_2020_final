@@ -10,6 +10,9 @@
 3班のプログラムの説明や使い方はこちらです。  
 [crane_x7_examples/README.md](./crane_x7_examples/README.md)  
 
+3班の中間に興味がある人はこちらです。 \
+[https://github.com/mirobo3/crane_x7_ros_team3_2020](https://github.com/mirobo3/crane_x7_ros_team3_2020)
+
 
 ***
 
@@ -51,7 +54,7 @@ ROSのサンプルコード集はこちらです。
 
   ```bash
   cd ~/catkin_ws/src
-  git clone https://github.com/mirobo3/crane_x7_ros_team3_2020
+  git clone https://github.com/mirobo3/crane_x7_ros_team3_2020_final.git
   ```
 
 - 依存関係にあるパッケージをインストールします。
@@ -125,6 +128,9 @@ GazeboでCRANE-X7のシミュレーションを行うパッケージです。
 次のコマンドで起動します。実機との接続やcrane_x7_bringupの実行は必要ありません。
 
 `roslaunch crane_x7_gazebo crane_x7_card_stand.launch`
+
+### image 
+realsenseを使った画像認識をするためのパッケージです
 
 ---
 
