@@ -93,6 +93,8 @@ def main():
     result = gc.wait(2.0)
     print result
     time.sleep(1)
+    arm.set_named_target("vertical")
+    arm.go()
 
 if __name__ == "__main__":
     main()
