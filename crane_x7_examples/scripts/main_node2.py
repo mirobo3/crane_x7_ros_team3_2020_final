@@ -8,6 +8,7 @@ import gu
 import par
 import pose2
 import hand_action
+import par_new
 
 n = 0
         
@@ -23,11 +24,14 @@ def process():
                 choki.main()
             elif n == 2:
                 par.main()
+            elif n == 3:
+                par_new.main()
             elif n == 5:
                 gu.main()
             else: 
                 print('not find gesture')
-            hand_action.main()
+            if not n==3:
+                hand_action.main()
         print('done')
 
 if __name__=='__main__':
