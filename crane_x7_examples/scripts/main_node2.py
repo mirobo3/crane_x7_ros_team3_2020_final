@@ -13,8 +13,8 @@ n = 0
         
 def process():
         pose2.main()
-        rospy.sleep(2)
-        n = rospy.wait_for_message('hand_gesture', Int32)
+        rospy.sleep(1)
+        n = rospy.wait_for_message('hand_gesture', Int32, 0.1)
         n = n.data
         print(n)
 
