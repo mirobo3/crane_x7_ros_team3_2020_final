@@ -107,7 +107,7 @@ def call(message):
 		print (result)
 		time.sleep(1)
 	else:
-		print('Error Not correct number')
+		print('Error Not correct gesture')
 
 	# 悔しがる
 	target_joint_values = arm.get_current_joint_values()
@@ -136,7 +136,7 @@ def call(message):
 
 def main():
 	rospy.init_node('main')
-	rospy.Subscriber("gesture_gu", Int32, call)
+	rospy.Subscriber("hand_gesture", Int32, call)
 	rospy.spin()
 
 if __name__ == "__main__":
