@@ -46,19 +46,25 @@ class GripperClient(object):
 
 def main():
 
-    APPROACH_Z = 0.2 #移動するときの高さ
+    z = 0.2 #移動するときの高さ
     LEAVE_Z = 0.20   #持ち上げる高さ
-    PICK_Z = 0.14    #掴むときのアームの高さ
-    card0 = 0.0      #カード3のy座標
+    min_z = 0.15    #掴むときのアームの高さ
+    y = 0.0      #カード3のy座標
     card2 = -0.07    #カード2のy座標
     card1 = 0.07     #カード1のy座標
     cardx = 0.195    #3つのカードのx座標
+    max_z = 0.25
+    x1 = 0.1
+    x2 = 0.15
+    x3 = 0.2
+    x4 = 0.25
+    x5 = 0.3
 
-    rospy.init_node("gripper_action_client")
+    #rospy.init_node("gripper_action_client")
     robot = moveit_commander.RobotCommander()
     arm = moveit_commander.MoveGroupCommander("arm")
     #アームの動きの速さを示している
-    arm.set_max_velocity_scaling_factor(0.3)
+    arm.set_max_velocity_scaling_factor(1.0)
 
     gripper = moveit_commander.MoveGroupCommander("gripper")
     
@@ -81,8 +87,9 @@ def main():
     # SRDFに定義されている"home"の姿勢にする
     arm.set_named_target("home")
     arm.go()
-    gripper.set_joint_value_target([0.7, 0.7])
+    gripper.set_joint_value_target([0.01, 0.01])
     gripper.go()
+    
     
     #繰り返し呼び出すのでmove関数を定義する
     def move(x,y,z):
@@ -99,48 +106,17 @@ def main():
         arm.go()  
 
     #掴むカードを迷う動作
-    move(cardx, card0, APPROACH_Z)   
+    move(x1, y, z)   
     rospy.sleep(1.0)
-    move(cardx, card2, APPROACH_Z)
-    rospy.sleep(1.2) 
-    move(cardx, card1, APPROACH_Z)
-    rospy.sleep(1.5)
-
-    move(cardx, card0, APPROACH_Z)
-    rospy.sleep(2.0)
-    move(cardx, card0, 0.16)
-    rospy.sleep(1.0)
-    move(cardx, card0, APPROACH_Z)
-    rospy.sleep(1.0)
-
-    move(cardx, card1, APPROACH_Z)
-    rospy.sleep(1.0)
-
-    # 掴みにいく
-    move(cardx, card1, PICK_Z)
-    rospy.sleep(1.0)
-
-    gc = GripperClient()
-    rospy.sleep(1.0)
-
-    #gripperの角度を変える
-    gripper = 0.275
-    gc.command(math.radians(gripper), 1.0)
-    result=gc.wait(2.0)
-    time.sleep(1)
     
-    # 持ち上げる
-    move(cardx,card1,LEAVE_Z)
-
-    # 移動する
-    move(cardx,0.3,0.2)
-
-    # SRDFに定義されている"home"の姿勢にする
-    # srdfファイルがある場所 (mirobo3_3_2020_crane_x7_ros/crane_x7_moveit_config/config/crane_x7.srdf)
-    arm.set_named_target("home")
-    arm.go()
-
-    move(cardx, card0, 0.3)
+    move(x1, y, min_z)
+   # move(x2, y, z)
+    move(x3, y, max_z)
+   # move(x4, y, z)
+    move(x5, y, min_z)
+    move(x3, y, max_z)
+    move(x1, y, min_z)
+    move(x3, y, max_z)
 
     def move1(x,y,z):
         target_pose = geometry_msgs.msg.Pose()
@@ -155,18 +131,8 @@ def main():
         arm.set_pose_target(target_pose)
         arm.go()
     
-        rospy.sleep(1.0)
 
-    move1(cardx, card0, 0.25)
-
-    move1(0.02, -0.3, APPROACH_Z)
-
-    gripper = 45
-    gc.command(math.radians(gripper), 1.0)
-    result=gc.wait(2.0)
-    time.sleep(1)
-
-    arm.set_named_target("vertical")
+    arm.set_named_target("home")
     arm.go() 
 
     print("done")

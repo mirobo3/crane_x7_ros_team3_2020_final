@@ -6,14 +6,14 @@ from std_msgs.msg import Int32
 import choki
 import gu
 import par
-import pose2
+import pose3
 import hand_action
 import par_new
 
 n = 0
         
 def process():
-        pose2.main()
+        pose3.main()
         rospy.sleep(1)
         n = rospy.wait_for_message('hand_gesture', Int32, 0.1)
         n = n.data

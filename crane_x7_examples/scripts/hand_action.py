@@ -77,12 +77,10 @@ def main():
     arm.go()
 
     for i in range(3):
-      target_joint_values = arm.get_current_joint_values()
       joint_angle = math.radians(-60)
       target_joint_values[3] = joint_angle 
       arm.set_joint_value_target(target_joint_values)
       arm.go()
-      target_joint_values = arm.get_current_joint_values()
       joint_angle = math.radians(-160)
       target_joint_values[3] = joint_angle 
       arm.set_joint_value_target(target_joint_values)
@@ -93,6 +91,8 @@ def main():
     result = gc.wait(2.0)
     print result
     time.sleep(1)
+    arm.set_named_target("vertical")
+    arm.go()
 
 if __name__ == "__main__":
     main()

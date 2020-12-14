@@ -50,6 +50,8 @@ ROSのサンプルコード集はこちらです。
 
 - [ROS Wiki](http://wiki.ros.org/ja/kinetic/Installation/Ubuntu)を参照しROSをインストールします。
 
+- 実機を使う場合は、[realsense-ros](https://github.com/IntelRealSense/realsense-ros)をインストールしてください
+
 - `git`を使用して本パッケージをダウンロードします。
 
   ```bash
@@ -131,6 +133,8 @@ GazeboでCRANE-X7のシミュレーションを行うパッケージです。
 
 ### image 
 realsenseを使った画像認識をするためのパッケージです
+
+使い方に関しての詳しい説明は[こちら](./crane_x7_exa,ples/README.md)を参照してください
 
 ---
 
