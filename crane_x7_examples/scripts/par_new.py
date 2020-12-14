@@ -70,7 +70,7 @@ def main():
     arm.set_joint_value_target(target_joint_values)
     arm.go()
 
-     #パーの手
+    #手を開き手首を回転
     print "Change par."
     gripper = 70
     gc.command(math.radians(gripper),1.0)
