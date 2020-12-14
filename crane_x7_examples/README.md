@@ -65,7 +65,13 @@ cd .gazebo
 rm -rf models
 git clone https://github.com/mirobo3/models.git
 ~~~
-これでセットアップ完了です
+
+もし、本パッケージをビルドしていない場合は下記のコマンドを実行してください
+~~~
+cd 
+cd ~/catkin_ws/
+catkin_make
+~~~
 
 ## 使い方
 --- 
@@ -76,7 +82,7 @@ gazebo上で動かす場合
 roslaunch crane_x7_gazebo crane_x7_hand.launch
 ~~~
 実行すると次のような状態になっていれば成功です
-
+<img src = "https://user-images.githubusercontent.com/72371137/102042393-173c5f80-3e15-11eb-872f-88d2ea6e82e5.png" width = 70%>
 
 gazeboが起動したら、別のターミナルを開き、下記のコマンドを実行
 ~~~
@@ -88,20 +94,60 @@ gazeboが起動したら、別のターミナルを開き、下記のコマン�
 
 [実機との接続の仕方](#実機を使う場合)
 
-接続出来たら、次のコマンドを実行します
+接続出来たら、次のコマンドを実行し、realsenseを起動させます
 ~~~
+roslaunch realsense2_camera rs_camera.launch 
+~~~
+起動後、別のターミナルを開き
+~~~
+
 ~~~
 実機と手の距離
 
-## ファイル一覧
+## プログラム一覧
 --- 
-- choki.py
-- gu.py
-- par.py
-- hand_Action.py
-- main2.py
-- main_node2.py
-- par_new.py
-- pose2.py
-- 
+- [choki.py](#choki.py)
+- [gu.py](#gu.py)
+- [par.py](#par.py)
+- [hand_action.py](#hand_action.py)
+- [main2.py](#main2.py)
+- [main_node2.py](#main_node2.py)
+- [main_node3.py](#main_node3.py)
+- [par_new.py](#par_new.py)
+- [pose2.py](#pose2.py)
+- [pose3.py](#pose3.py)
+
+※これらのプログラムを単体で動かしたい場合はプログラム内の#rospy.init_node("gripper_action_cliant")と書いてある行の＃を消してください
+
+---
+choki.py\
+gu.py\
+par.py\
+par_new.py
+
+アームが出せる手のプログラムです
+
+---
+hand_action.py
+
+悔しがる動きをさせるプログラムです
+
+---
+main_node2.py\
+main_node3.py\
+main2.py
+
+crane_x7がじゃんけんで負けてくれるプログラムです
+
+数字が違うプログラムだと動きが違います\
+main_node2.py main_node3.py でエラーが起きたときはmain2.pyを実行してください
+~~~
+rosrun crane_x7_example (実行したいプログラム)
+~~~
+
+---
+pose2.py\
+pose3.py
+
+最初はグー～～ポンまでの動きをするプログラムです
 
