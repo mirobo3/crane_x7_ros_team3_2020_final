@@ -71,7 +71,7 @@ def main():
     arm.go()
     
      #チョキの手
-    print "Close choki."
+    print "C choki."
     gripper = 15
     gc.command(math.radians(gripper),1.0)
     result = gc.wait(2.0)
