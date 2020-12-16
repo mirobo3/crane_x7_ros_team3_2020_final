@@ -66,11 +66,19 @@ rm -rf models
 git clone https://github.com/mirobo3/models.git
 ~~~
 
+realsenseをgazebo上で使えるようにパッケージをgitcloneします
+~~~
+cd ~/catkin_ws/src
+git clone https://github.com/mirobo3/crane_x7_d435.git
+~~~
+
+
 もし、本パッケージをビルドしていない場合は下記のコマンドを実行してください
 ~~~
 cd 
 cd ~/catkin_ws/
 catkin_make
+source ~/catkin_ws/devel/setup.bash
 ~~~
 
 ## 使い方
@@ -79,13 +87,15 @@ gazebo上で動かす場合
 
 ターミナルを開き、次のようなコマンドを実行します
 ~~~
-roslaunch crane_x7_gazebo crane_x7_hand.launch
+roslaunch crane_x7_d435 bringup_sim_test.launch
 ~~~
 実行すると次のような状態になっていれば成功です
-<img src = "https://user-images.githubusercontent.com/72371137/102042393-173c5f80-3e15-11eb-872f-88d2ea6e82e5.png" width = 70%>
+<img src = https://user-images.githubusercontent.com/72371743/102318912-6fae6100-3fbd-11eb-8668-d3b5d1629f96.png width =500px />
 
 gazeboが起動したら、別のターミナルを開き、下記のコマンドを実行
 ~~~
+rosrun image cvbridge_hand_gesture_subpub_python.py
+rosrun crane_x7_examples main_node3.py
 ~~~
 
 実機で動かす場合
@@ -100,9 +110,12 @@ roslaunch realsense2_camera rs_camera.launch
 ~~~
 起動後、別のターミナルを開き
 ~~~
-
+rosrun image cvbridge_hand_gesture_subpub_python.py
+rosrun crane_x7_examples main_node3.py
 ~~~
-実機と手の距離
+実機と手の距離は以下の画像のようになるべく四角の中に手の全体が入るようにしてください   
+<img src=https://user-images.githubusercontent.com/72371743/102319767-b81a4e80-3fbe-11eb-8ede-5ce5d4336eb4.jpg width=500px />
+
 
 ## プログラム一覧
 --- 
@@ -135,12 +148,11 @@ hand_action.py
 ---
 main_node2.py\
 main_node3.py\
-main2.py
 
 crane_x7がじゃんけんで負けてくれるプログラムです
 
 数字が違うプログラムだと動きが違います\
-main_node2.py main_node3.py でエラーが起きたときはmain2.pyを実行してください
+main_node2.py main_node3.py 
 ~~~
 rosrun crane_x7_example (実行したいプログラム)
 ~~~
