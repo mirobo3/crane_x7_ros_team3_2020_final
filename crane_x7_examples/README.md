@@ -83,7 +83,7 @@ source ~/catkin_ws/devel/setup.bash
 
 ## 使い方
 --- 
-gazebo上で動かす場合
+### gazebo上で動かす場合
 
 ターミナルを開き、次のようなコマンドを実行します
 ~~~
@@ -98,7 +98,7 @@ rosrun image cvbridge_hand_gesture_subpub_python.py
 rosrun crane_x7_examples main_node3.py
 ~~~
 
-実機で動かす場合
+### 実機で動かす場合
 
 下記リンク先の手順に従って実機と接続します
 
