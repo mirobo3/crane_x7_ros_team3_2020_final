@@ -90,7 +90,7 @@ source ~/catkin_ws/devel/setup.bash
 roslaunch crane_x7_d435 bringup_sim_test.launch
 ~~~
 実行すると次のような状態になっていれば成功です
-<img src = https://user-images.githubusercontent.com/72371743/102318912-6fae6100-3fbd-11eb-8668-d3b5d1629f96.png width =500px />
+<img src = https://user-images.githubusercontent.com/72371743/102320729-0da32b00-3fc0-11eb-8645-5ce15caa0b04.png width =500px />
 
 gazeboが起動したら、別のターミナルを開き、下記のコマンドを実行
 ~~~
