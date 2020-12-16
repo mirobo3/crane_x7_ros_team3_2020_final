@@ -2,13 +2,16 @@
 
 # crane_x7_ros_team3_2020_final
 
-![hand_recognition002-2020-12-09_20 32 36_Trim_Moment](https://user-images.githubusercontent.com/72371743/101672108-cb965880-3a98-11eb-8fd5-6335bd5309a0.jpg)
+<img src=https://user-images.githubusercontent.com/72371743/101672108-cb965880-3a98-11eb-8fd5-6335bd5309a0.jpg width=700px />
 
 3班の期末のコンセプトなどはこちらです。  
 [https://github.com/mirobo3/TERM_END_TEAM3/blob/main/README.md](https://github.com/mirobo3/TERM_END_TEAM3/blob/main/README.md)
 
 3班のプログラムの説明や使い方はこちらです。  
 [crane_x7_examples/README.md](./crane_x7_examples/README.md)  
+
+3班のモデルの説明などはこちらです。  
+[https://github.com/mirobo3/models](https://github.com/mirobo3/models)
 
 3班の中間に興味がある人はこちらです。 \
 [https://github.com/mirobo3/crane_x7_ros_team3_2020](https://github.com/mirobo3/crane_x7_ros_team3_2020)
