@@ -132,12 +132,12 @@ GazeboでCRANE-X7のシミュレーションを行うパッケージです。
 
 次のコマンドで起動します。実機との接続やcrane_x7_bringupの実行は必要ありません。
 
-`roslaunch crane_x7_gazebo crane_x7_card_stand.launch`
+`roslaunch crane_x7_gazebo crane_x7_hand.launch`
 
 ### image 
 realsenseを使った画像認識をするためのパッケージです
 
-使い方に関しての詳しい説明は[こちら](./crane_x7_exa,ples/README.md)を参照してください
+使い方に関しての詳しい説明は[こちら](./crane_x7_examples/README.md)を参照してください
 
 ---
 
