@@ -2,7 +2,7 @@
 CRANE-X7のROSパッケージです。このパッケージはオリジナルである [https://github.com/rt-net/crane_x7_ros]　に対して千葉工業大学未来ロボティクス学科の2020年度の設計製作論3という講義で知能コース3班が変更を加えたものです。  
 # crane_x7_ros_team3_2020_final
 
-<img src=https://user-images.githubusercontent.com/72371743/101672108-cb965880-3a98-11eb-8fd5-6335bd5309a0.jpg width=700px />
+<img src=https://user-images.githubusercontent.com/72371743/102575517-980d9b00-4136-11eb-9b1a-8cf01d504625.jpg width=700px />
 
 3班の期末のコンセプトなどはこちらです。  
 [https://github.com/mirobo3/TERM_END_TEAM3/blob/main/README.md](https://github.com/mirobo3/TERM_END_TEAM3/blob/main/README.md)
