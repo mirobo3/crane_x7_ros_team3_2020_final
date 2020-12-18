@@ -92,7 +92,7 @@ roslaunch crane_x7_d435 bringup_sim_test.launch
 実行すると次のような状態になっていれば成功です
 <img src = https://user-images.githubusercontent.com/72371743/102320729-0da32b00-3fc0-11eb-8645-5ce15caa0b04.png width =500px />
 
-gazeboが起動したら、別のターミナルを開き、下記のコマンドを実行
+gazeboが起動したら、別のターミナルを開き下記のコマンドを実行
 ~~~
 rosrun image cvbridge_hand_gesture_subpub_python.py
 rosrun crane_x7_examples main_node3.py
