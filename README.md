@@ -34,18 +34,15 @@ ROSのサンプルコード集はこちらです。
 
 以下の環境にて動作確認を行っています。
 
-- ROS Kinetic
-  - OS: Ubuntu 16.04.5 LTS
-  - ROS Distribution: Kinetic Kame 1.12.14
-  - Rviz 1.12.17
-  - MoveIt! 0.9.17
-  - Gazebo 7.0.0
+
 - ROS Melodic
   - OS: Ubuntu 18.04.3 LTS
   - ROS Distribution: Melodic Morenia 1.14.3
   - Rviz 1.12.16
   - MoveIt! 1.13.3
   - Gazebo 9.0.0
+-  [rt-net/crane_x7_ros](https://github.com/rt-net/crane_x7_ros)
+-  [IntelRealSense/realsense-ros](https://github.com/IntelRealSense/realsense-ros)
 
 ## インストール方法
 
